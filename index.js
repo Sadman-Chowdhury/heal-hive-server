@@ -31,6 +31,12 @@ async function run() {
     const serviceCollection = client.db('docServiceDB').collection('services')
 
 
+    app.get('/services', async(req,res)=>{
+        const cursor = serviceCollection.find()
+        const result = await cursor.toArray()
+        res.send(result)
+    })
+
     app.post('/services', async (req, res)=>{
         const newService = req.body
         console.log(newService)
