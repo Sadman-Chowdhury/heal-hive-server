@@ -29,6 +29,7 @@ async function run() {
     // await client.connect();
 
     const serviceCollection = client.db('docServiceDB').collection('services')
+    const bookingCollection = client.db('docServiceDB').collection('bookings')
 
 
     app.get('/services', async(req,res)=>{
