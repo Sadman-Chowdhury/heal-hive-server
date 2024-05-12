@@ -86,6 +86,23 @@ async function run() {
 
     })
 
+    app.put('/bookings/:id', async(req,res)=>{
+        const id = req.params.id
+        const updatedStatus = req.body
+        console.log(id, updatedStatus)
+        const filter = {_id: new ObjectId(id)}
+        const options = {upsert: true}
+        const booking = {
+            $set: {
+                status: updatedStatus.status
+            }
+        }
+
+        const result = await bookingCollection.updateOne(filter, booking, options)
+        res.send(result)
+
+    })
+
     app.delete('/services/:id', async(req,res)=>{
         const id = req.params.id
         console.log('Delete from db', id)
